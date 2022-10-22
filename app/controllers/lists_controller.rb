@@ -3,8 +3,23 @@ class ListsController < ApplicationController
     @lists = List.all
   end
 
-  def show
-    @listito = Lists.find(params[:id])
-
+  def new
+    @newList = List.new
   end
+
+  def create
+    @newList = List.new(list_params)
+  end
+
+  def show
+    @listito = List.find(params[:id])
+    @films = @listito.movies
+  end
+
+  private
+
+  def list_params
+    params.require(:list).permit(:name)
+  end
+
 end

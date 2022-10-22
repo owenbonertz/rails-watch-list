@@ -3,7 +3,11 @@
 <ul>
   <% @lists.each do |list| %>
   <li>
-    <%= list.name %>
+    <% numba = list.id %>
+    <%= link_to "#{list.name}", "lists/#{numba}"  %>
   </li>
   <% end %>
 </ul>
+<button type="button" class="btn">
+  <%= link_to "Make a new list", "lists/new" %>
+</button>

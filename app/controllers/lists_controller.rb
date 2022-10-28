@@ -8,7 +8,14 @@ class ListsController < ApplicationController
   end
 
   def create
-    @newList = List.new(list_params)
+    @list = List.new(list_params)
+    if @product.save
+      flash[:notice] = 'List added!'
+      redirect_to lists_path
+    else
+      flash[:error] = 'Failed to edit list!'
+      render :new
+    end
   end
 
   def show
